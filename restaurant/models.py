@@ -14,3 +14,11 @@ class Restaurant(models.Model):
     owner = models.ForeignKey(CustomUser, related_name='restaurants', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+# Category represents a category of menu items within a specific restaurant.
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+    restaurant = models.ForeignKey(Restaurant, related_name='categories', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

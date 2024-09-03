@@ -3,3 +3,4 @@ from restaurant import models as restaurant_model
 # Register your models here.
 
 admin.site.register(restaurant_model.Restaurant)
+admin.site.register(restaurant_model.Category)

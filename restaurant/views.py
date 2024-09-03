@@ -58,3 +58,17 @@ class RestaurantDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = res_models.Restaurant.objects.all()
     serializer_class = res_serializer.RestaurantSerializer
     permission_classes = [IsAuthenticated, res_permissions.IsOwnerOrEmployee]
+
+
+
+# List and create operations for Category instances, restricted to owners and employees.
+class CategoryListCreateView(generics.ListCreateAPIView):
+    queryset = res_models.Category.objects.all()
+    serializer_class = res_serializer.CategorySerializer
+    permission_classes = [IsAuthenticated, res_permissions.IsOwnerOrEmployee]
+
+# Retrieve, update, and delete operations for Category instances, restricted to owners and employees.
+class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = res_models.Category.objects.all()
+    serializer_class = res_serializer.CategorySerializer
+    permission_classes = [IsAuthenticated, res_permissions.IsOwnerOrEmployee]

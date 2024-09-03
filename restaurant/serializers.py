@@ -25,8 +25,15 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
     
 
-# Serializes Restaurant model instances for API views.
+# Serializer Restaurant model instances for API views.
 class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = res_model.Restaurant
+        fields = '__all__'
+
+
+# Serializer Category model instances for API views.
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = res_model.Category
         fields = '__all__'
