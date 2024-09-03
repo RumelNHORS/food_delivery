@@ -4,7 +4,10 @@ from rest_framework.response import Response
 from django.contrib.auth import get_user_model
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
-from .serializers import RegisterSerializer
+from rest_framework.permissions import IsAuthenticated
+from restaurant import serializers as res_serializer
+from restaurant import models as res_models
+from restaurant import permissions as res_permissions
 
 User = get_user_model()
 
@@ -12,7 +15,7 @@ User = get_user_model()
 # RegisterUserView handles the registration of new users and returns an authentication token.
 class RegisterUserView(generics.CreateAPIView):
     queryset = User.objects.all()
-    serializer_class = RegisterSerializer
+    serializer_class = res_serializer.RegisterSerializer
 
     def create(self, request, *args, **kwargs):
         # Manually handle the user creation
@@ -42,3 +45,9 @@ class CustomAuthToken(ObtainAuthToken):
             'is_employee': user.is_employee,
         })
 
+
+# CRUD operations for Restaurant instances, restricted to owners and employees.
+class RestaurantListCreateView(generics.ListCreateAPIView):
+    queryset = res_models.Restaurant.objects.all()
+    serializer_class = res_serializer.RestaurantSerializer
+    permission_classes = [IsAuthenticated, res_permissions.IsOwnerOrEmployee]

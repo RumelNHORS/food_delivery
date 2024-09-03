@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import RegisterUserView, CustomAuthToken
+from restaurant import views as res_views
 
 urlpatterns = [
-    path('register/', RegisterUserView.as_view(), name='register'),
-    path('login/', CustomAuthToken.as_view(), name='login'),
+    path('register/', res_views.RegisterUserView.as_view(), name='register'),
+    path('login/', res_views.CustomAuthToken.as_view(), name='login'),
+    path('restaurants/', res_views.RestaurantListCreateView.as_view(), name='restaurant-list-create'),
 ]
