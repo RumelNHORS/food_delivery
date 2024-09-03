@@ -46,8 +46,15 @@ class CustomAuthToken(ObtainAuthToken):
         })
 
 
-# CRUD operations for Restaurant instances, restricted to owners and employees.
+# List and create operations for Restaurant instances, restricted to owners and employees.
 class RestaurantListCreateView(generics.ListCreateAPIView):
+    queryset = res_models.Restaurant.objects.all()
+    serializer_class = res_serializer.RestaurantSerializer
+    permission_classes = [IsAuthenticated, res_permissions.IsOwnerOrEmployee]
+
+
+# Retrieve, Update, and Delete operations for Restaurant instances, restricted to owners and employees.
+class RestaurantDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = res_models.Restaurant.objects.all()
     serializer_class = res_serializer.RestaurantSerializer
     permission_classes = [IsAuthenticated, res_permissions.IsOwnerOrEmployee]
