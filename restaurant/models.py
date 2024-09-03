@@ -8,4 +8,9 @@ class CustomUser(AbstractUser):
     is_employee = models.BooleanField(default=False)
 
 
-
+# Restaurant represents a restaurant managed by an owner.
+class Restaurant(models.Model):
+    name = models.CharField(max_length=255)
+    owner = models.ForeignKey(CustomUser, related_name='restaurants', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
