@@ -15,7 +15,7 @@ class CustomUser(AbstractUser):
     is_employee = models.BooleanField(default=False)
 
 
-# Restaurant represents a restaurant managed by an owner.
+# Models for represents a restaurant managed by an owner.
 class Restaurant(models.Model):
     name = models.CharField(max_length=255)
     owner = models.ForeignKey(CustomUser, related_name='restaurants', on_delete=models.CASCADE)
@@ -23,7 +23,7 @@ class Restaurant(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-# Category represents a category of menu items within a specific restaurant.
+# Models for Create Restaurant Category
 class Category(models.Model):
     name = models.CharField(max_length=255)
     restaurant = models.ForeignKey(Restaurant, related_name='categories', on_delete=models.CASCADE)
@@ -31,7 +31,7 @@ class Category(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-# Menue Item Model
+# Models for Create Restaurant Menue Item
 class MenuItem(models.Model):
     name = models.CharField(max_length=255)
     category = models.ForeignKey(Category, related_name='menu_items', on_delete=models.CASCADE)
