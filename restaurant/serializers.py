@@ -44,3 +44,9 @@ class MenuItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = res_model.MenuItem
         fields = '__all__'
+
+
+class ModifierSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = res_model.Modifier
+        fields = '__all__'

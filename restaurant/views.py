@@ -86,3 +86,16 @@ class MenuItemDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = res_models.MenuItem.objects.all()
     serializer_class = res_serializer.MenuItemSerializer
     permission_classes = [IsAuthenticated, res_permissions.IsOwnerOrEmployee]
+
+
+# Views for Create and List of the Modifire
+class ModifierListCreateView(generics.ListCreateAPIView):
+    queryset = res_models.Modifier.objects.all()
+    serializer_class = res_serializer.ModifierSerializer
+    permission_classes = [IsAuthenticated, res_permissions.IsOwnerOrEmployee]
+
+# Views for Update and Delete the modifire
+class ModifierDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = res_models.Modifier.objects.all()
+    serializer_class = res_serializer.ModifierSerializer
+    permission_classes = [IsAuthenticated, res_permissions.IsOwnerOrEmployee]

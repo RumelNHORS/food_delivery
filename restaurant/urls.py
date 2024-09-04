@@ -10,4 +10,6 @@ urlpatterns = [
     path('categories/<int:pk>/', res_views.CategoryDetailView.as_view(), name='category-detail'),
     path('menu_items/', res_views.MenuItemListCreateView.as_view(), name='menuitem-list-create'),
     path('menu_items/<int:pk>/', res_views.MenuItemDetailView.as_view(), name='menuitem-detail'),
+    path('modifiers/', res_views.ModifierListCreateView.as_view(), name='modifier-list-create'),
+    path('modifiers/<int:pk>/', res_views.ModifierDetailView.as_view(), name='modifier-detail'),
 ]
