@@ -99,3 +99,13 @@ class ModifierDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = res_models.Modifier.objects.all()
     serializer_class = res_serializer.ModifierSerializer
     permission_classes = [IsAuthenticated, res_permissions.IsOwnerOrEmployee]
+
+
+# Create the view to handle the order creation.
+class OrderCreateView(generics.CreateAPIView):
+    queryset = res_models.Order.objects.all()
+    serializer_class = res_serializer.OrderSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(customer=self.request.user)
