@@ -60,6 +60,11 @@ class RestaurantDetailView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated, res_permissions.IsOwnerOrEmployee]
 
 
+# View to list all Restaurants, restricted to all users.
+class RestaurantListView(generics.ListAPIView):
+    queryset = res_models.Restaurant.objects.all()
+    serializer_class = res_serializer.RestaurantSerializer
+
 
 # List and create operations for Category instances, restricted to owners and employees.
 class CategoryListCreateView(generics.ListCreateAPIView):
@@ -74,6 +79,12 @@ class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated, res_permissions.IsOwnerOrEmployee]
 
 
+# View to list all Categories, restricted to all users.
+class CategoryListView(generics.ListAPIView):
+    queryset = res_models.Category.objects.all()
+    serializer_class = res_serializer.CategorySerializer
+
+
 # View For List and Create the Menue Item
 class MenuItemListCreateView(generics.ListCreateAPIView):
     queryset = res_models.MenuItem.objects.all()
@@ -86,6 +97,12 @@ class MenuItemDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = res_models.MenuItem.objects.all()
     serializer_class = res_serializer.MenuItemSerializer
     permission_classes = [IsAuthenticated, res_permissions.IsOwnerOrEmployee]
+
+
+# View to list all MenuItems, restricted to all users.
+class MenuItemListView(generics.ListAPIView):
+    queryset = res_models.MenuItem.objects.all()
+    serializer_class = res_serializer.MenuItemSerializer
 
 
 # Views for Create and List of the Modifire
@@ -105,7 +122,7 @@ class ModifierDetailView(generics.RetrieveUpdateDestroyAPIView):
 class OrderCreateView(generics.CreateAPIView):
     queryset = res_models.Order.objects.all()
     serializer_class = res_serializer.OrderSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated] # If you thik unathenticated user can be order, then remove or Comment this line
 
     def perform_create(self, serializer):
         serializer.save(customer=self.request.user)
