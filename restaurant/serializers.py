@@ -37,3 +37,10 @@ class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = res_model.Category
         fields = '__all__'
+
+
+# Menue Item Serializer
+class MenuItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = res_model.MenuItem
+        fields = '__all__'

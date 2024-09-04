@@ -72,3 +72,10 @@ class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = res_models.Category.objects.all()
     serializer_class = res_serializer.CategorySerializer
     permission_classes = [IsAuthenticated, res_permissions.IsOwnerOrEmployee]
+
+
+# View For List and Create the Menue Item
+class MenuItemListCreateView(generics.ListCreateAPIView):
+    queryset = res_models.MenuItem.objects.all()
+    serializer_class = res_serializer.MenuItemSerializer
+    permission_classes = [IsAuthenticated, res_permissions.IsOwnerOrEmployee]

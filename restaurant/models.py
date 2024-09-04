@@ -22,3 +22,13 @@ class Category(models.Model):
     restaurant = models.ForeignKey(Restaurant, related_name='categories', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+# Menue Item Model
+class MenuItem(models.Model):
+    name = models.CharField(max_length=255)
+    category = models.ForeignKey(Category, related_name='menu_items', on_delete=models.CASCADE)
+    price = models.DecimalField(max_digits=5, decimal_places=2)
+
+    def __str__(self):
+        return self.name
