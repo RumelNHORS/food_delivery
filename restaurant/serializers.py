@@ -25,14 +25,14 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
     
 
-# Serializer Restaurant model instances for API views.
+# Serializer for Restaurant model
 class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = res_model.Restaurant
         fields = '__all__'
 
 
-# Serializer Category model instances for API views.
+# Serializer for Category model
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = res_model.Category
@@ -46,19 +46,20 @@ class MenuItemSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+# Modifier Model Serializer
 class ModifierSerializer(serializers.ModelSerializer):
     class Meta:
         model = res_model.Modifier
         fields = '__all__'
 
 
-# Serializer for OrderItem model, handles the serialization of individual order items.
+# Serializer for OrderItem model
 class OrderItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = res_model.OrderItem
         fields = ['id', 'menu_item', 'quantity', 'price']
 
-# Serializer for Order model, handles the serialization of entire orders, including related order items.
+# Serializer for Order model
 class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True)
 
